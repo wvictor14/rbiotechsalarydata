@@ -8,7 +8,7 @@ on:
 name: Quarto Publish
 
 jobs:
-  build-deploy:
+  update-data-render-publish:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -51,5 +51,7 @@ jobs:
           git config user.email github-actions@github.com
           git add salary_raw_data.csv
           git add salary_results_cleaned.csv
-          git commit -m "gha salary data"
+          
+          timestamp=$(date +'%Y-%m-%d_%H%M%S')
+          git commit -m "$timestamp gha salary data"
           git push
