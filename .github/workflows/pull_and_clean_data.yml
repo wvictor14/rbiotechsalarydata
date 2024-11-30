@@ -39,3 +39,17 @@ jobs:
           path: pull_and_clean_data.qmd
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Render and commit data
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          path: pull_and_clean_data.qmd 
+      - name: Commit cleaned data
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add salary_raw_data.csv
+          git add salary_results_cleaned.csv
+          git commit -m "gha salary data"
+          git push
