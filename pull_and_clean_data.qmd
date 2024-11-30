@@ -1,11 +1,12 @@
 ---
 title: "Cleaning r/biotech Salary Data"
-#date: last-modified
+date: last-modified
 date-modified: last-modified
 params:
   outdir: ""
 format:
   html:
+    embed-resources: true
     toc: true
     toc-depth: 4
 editor: visual
@@ -13,8 +14,14 @@ editor_options:
   chunk_output_type: console
 ---
 
+set out dir
+
 ```{r}
-outdir <- here::here(outdir)
+if (interactive()){
+  outdir <- here::here()
+} else {
+  outdir <- here::here(params$outdir)
+}
 ```
 
 # libraries
@@ -48,7 +55,7 @@ I extract the sheets into separate csv files so that they can display on github 
 library(googlesheets4)
 gs4_deauth()
 google_sheets_url <- 'https://docs.google.com/spreadsheets/d/1G0FmJhkOME_sv66hWmhnZS5qR2KMTY7nzkxksv46bfk/edit#gid=491268892'
-sheet_names <- c('2024', '2023', '2022')
+sheet_names <- googlesheets4::sheet_names(google_sheets_url)
 
 #read_sheet(google_sheets_url, sheet = '2024', col_types = 'c')
 
@@ -70,7 +77,7 @@ Look at response rate per question (number of NAs):
 
 ```{r read_data}
 # read in each sheet and combine
-sal <- c('2022', '2023', '2024') %>% 
+sal <- sheet_names %>% 
   setNames(., nm = .) |>   
   map(
     \(x) read_csv(
@@ -451,10 +458,10 @@ sal_clean_filt <- sal_clean_filt |>
         str_remove_all(
           regex('(Associate|Scientist|Principal|Senior)*', ignore_case = TRUE)) |> 
         str_replace_all('[:punct:]+', ' ') # |> 
-        # str_replace_all('\\s{2,}', ' ')
+      # str_replace_all('\\s{2,}', ' ')
       ,
       NA
-  )
+    )
   ) |> 
   
   # title_gen most specific to most general
@@ -491,7 +498,7 @@ remove <- sal_clean_filt |>
     month(mdy_hms(timestamp)) == 5,
     day(mdy_hms(timestamp)) == 22,
     role_title_of_current_position == 'Scientist'
-    ) |> 
+  ) |> 
   pull(timestamp)
 
 # removed
@@ -543,10 +550,10 @@ sal_clean_filt <- sal_clean_filt |>
         str_remove_all(
           regex('(Associate|Director|Senior|Executive)*', ignore_case = TRUE)) |> 
         str_replace_all('[:punct:]+', ' ') # |> 
-        # str_replace_all('\\s{2,}', ' ')
+      # str_replace_all('\\s{2,}', ' ')
       ,
       title_detail
-  )) |> 
+    )) |> 
   
   # title_gen most specific to most general
   mutate(title_general = case_when(
