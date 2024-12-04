@@ -1,34 +1,34 @@
 skim_variable,n_missing,complete_rate,min,max,empty,n_unique
 sheet_year,0,1,4,4,0,3
-Timestamp,0,1,16,19,0,2858
-What country do you work in?,2018,0.29415879678209167,2,24,0,33
-Where is the closest major city or hub?,1442,0.4956278419027632,2,42,0,272
-Where are you located?,1421,0.502973067506121,2,54,0,44
-Biotech sub industry?,0,1,2,103,0,162
-Company or Institution Name,428,0.8502973067506121,1,63,0,433
+Timestamp,0,1,16,19,0,2864
+What country do you work in?,2024,0.293542757417103,2,24,0,33
+Where is the closest major city or hub?,1448,0.4945898778359511,2,42,0,272
+Where are you located?,1421,0.5040139616055846,2,54,0,44
+Biotech sub industry?,0,1,2,103,0,163
+Company or Institution Name,428,0.8506108202443281,1,63,0,433
 Company Details - public/private/start-up/ subsidiary of,0,1,6,29,0,6
-Company Detail - Approximate Company Size,15,0.9947534102833159,4,9,0,5
-Role / Title of current position,0,1,1,69,0,1135
-What degrees do you have?,1246,0.5641832808674362,16,126,0,37
-List other relevant and recognized certifications,576,0.7985309548793285,2,67,0,71
-[Optional] Briefly describe your position,1744,0.3899965022735222,1,573,0,1071
+Company Detail - Approximate Company Size,15,0.9947643979057592,4,9,0,5
+Role / Title of current position,0,1,1,69,0,1139
+What degrees do you have?,1246,0.5650959860383944,16,126,0,37
+List other relevant and recognized certifications,576,0.7989528795811518,2,67,0,71
+[Optional] Briefly describe your position,1746,0.39057591623036647,1,573,0,1075
 Years of Experience,0,1,1,10,0,30
-Compensation - Annual Base Salary/Pay,0,1,1,9,0,587
-Compensation - Overtime Pay,576,0.7985309548793285,2,206,0,56
+Compensation - Annual Base Salary/Pay,0,1,1,9,0,588
+Compensation - Overtime Pay,576,0.7989528795811518,2,206,0,56
 Compensation - Annual Target Bonus ($),0,1,1,81,0,620
-Compensation - Annual Equity/Stock Option,1246,0.5641832808674362,1,91,0,252
-Compensation - Most recent annual yearly raise (%),576,0.7985309548793285,1,164,0,232
-Compensation - Sign on Bonus Value,1503,0.4742917103882477,1,6,0,64
-Compensation - Sign on Stock/Equity Options,2248,0.21371108779293457,1,430,0,245
-Compensation - Retirement Benefits (free text),881,0.6918502973067506,1,191,0,1001
-Compensation - Retirement Percent Match (free text),2859,0,NA,NA,0,0
-Compensation - Healthcare Benefits (free text),1880,0.34242742217558586,1,978,0,857
-[OPTIONAL] Sign on - Relocation Assistance Total Value,2275,0.20426722630290306,1,226,0,121
-[Optional] Company Review,2340,0.18153200419727178,1,881,0,474
-"[Optional] Work Life Balance - On average, how many hours do you work per week",1340,0.5313046519762155,3,12,0,12
-Survey Feedback,2758,0.035327037425673335,1,352,0,96
-Highest achieved Formal Education,1613,0.4358167191325638,17,32,0,6
-Compensation - Annual Equity,1613,0.4358167191325638,1,84,0,163
-Compensation - Stock Options,2588,0.09478838754809371,1,204,0,178
-Compensation - Options,2859,0,NA,NA,0,0
-Have you one a post-doc?,2859,0,NA,NA,0,0
+Compensation - Annual Equity/Stock Option,1246,0.5650959860383944,1,91,0,252
+Compensation - Most recent annual yearly raise (%),576,0.7989528795811518,1,164,0,232
+Compensation - Sign on Bonus Value,1503,0.4753926701570681,1,6,0,64
+Compensation - Sign on Stock/Equity Options,2252,0.21396160558464228,1,430,0,245
+Compensation - Retirement Benefits (free text),881,0.6924956369982548,1,191,0,1005
+Compensation - Retirement Percent Match (free text),2865,0,NA,NA,0,0
+Compensation - Healthcare Benefits (free text),1882,0.34310645724258293,1,978,0,861
+[OPTIONAL] Sign on - Relocation Assistance Total Value,2280,0.20418848167539272,1,226,0,121
+[Optional] Company Review,2344,0.1818499127399651,1,881,0,476
+"[Optional] Work Life Balance - On average, how many hours do you work per week",1342,0.5315881326352531,3,12,0,12
+Survey Feedback,2764,0.03525305410122159,1,352,0,96
+Highest achieved Formal Education,1619,0.4349040139616056,17,32,0,6
+Compensation - Annual Equity,1619,0.4349040139616056,1,84,0,163
+Compensation - Stock Options,2594,0.09458987783595119,1,204,0,178
+Compensation - Options,2865,0,NA,NA,0,0
+Have you one a post-doc?,2865,0,NA,NA,0,0
