@@ -1,34 +1,34 @@
 skim_variable,n_missing,complete_rate,min,max,empty,n_unique
 sheet_year,0,1,4,4,0,3
-Timestamp,0,1,16,19,0,2905
-What country do you work in?,2065,0.28940123881624225,2,24,0,33
-Where is the closest major city or hub?,1489,0.487611837577426,2,42,0,272
-Where are you located?,1421,0.5110116999311769,2,54,0,45
+Timestamp,0,1,16,19,0,2907
+What country do you work in?,2067,0.28920220082530945,2,24,0,33
+Where is the closest major city or hub?,1491,0.48727647867950485,2,42,0,272
+Where are you located?,1421,0.5113480055020633,2,54,0,45
 Biotech sub industry?,0,1,2,103,0,167
-Company or Institution Name,428,0.8527185134205093,1,63,0,437
+Company or Institution Name,428,0.8528198074277854,1,63,0,438
 Company Details - public/private/start-up/ subsidiary of,0,1,6,29,0,6
-Company Detail - Approximate Company Size,16,0.9944941500344116,4,9,0,5
-Role / Title of current position,0,1,1,69,0,1156
-What degrees do you have?,1246,0.5712319339298004,16,126,0,37
-List other relevant and recognized certifications,576,0.8017894012388163,2,67,0,72
-[Optional] Briefly describe your position,1768,0.39160357880247765,1,573,0,1093
+Company Detail - Approximate Company Size,16,0.9944979367262724,4,9,0,5
+Role / Title of current position,0,1,1,69,0,1158
+What degrees do you have?,1246,0.5715268225584594,16,126,0,37
+List other relevant and recognized certifications,576,0.8019257221458047,2,67,0,72
+[Optional] Briefly describe your position,1769,0.3916781292984869,1,573,0,1094
 Years of Experience,0,1,1,10,0,30
 Compensation - Annual Base Salary/Pay,0,1,1,9,0,591
-Compensation - Overtime Pay,576,0.8017894012388163,2,206,0,59
+Compensation - Overtime Pay,576,0.8019257221458047,2,206,0,59
 Compensation - Annual Target Bonus ($),0,1,1,81,0,625
-Compensation - Annual Equity/Stock Option,1246,0.5712319339298004,1,91,0,259
-Compensation - Most recent annual yearly raise (%),576,0.8017894012388163,1,164,0,235
-Compensation - Sign on Bonus Value,1524,0.4755677907777013,1,6,0,64
-Compensation - Sign on Stock/Equity Options,2278,0.2161046111493462,1,430,0,248
-Compensation - Retirement Benefits (free text),881,0.6968341362697866,1,191,0,1026
-Compensation - Retirement Percent Match (free text),2906,0,NA,NA,0,0
-Compensation - Healthcare Benefits (free text),1906,0.3441156228492773,1,978,0,874
-[OPTIONAL] Sign on - Relocation Assistance Total Value,2310,0.2050929112181693,1,226,0,122
-[Optional] Company Review,2373,0.1834136269786648,1,881,0,485
-"[Optional] Work Life Balance - On average, how many hours do you work per week",1345,0.5371644872677219,3,12,0,12
-Survey Feedback,2802,0.03578802477632481,1,352,0,98
-Highest achieved Formal Education,1660,0.42876806607019957,17,32,0,6
-Compensation - Annual Equity,1660,0.42876806607019957,1,84,0,163
-Compensation - Stock Options,2635,0.09325533379215412,1,204,0,178
-Compensation - Options,2906,0,NA,NA,0,0
-Have you one a post-doc?,2906,0,NA,NA,0,0
+Compensation - Annual Equity/Stock Option,1246,0.5715268225584594,1,91,0,259
+Compensation - Most recent annual yearly raise (%),576,0.8019257221458047,1,164,0,235
+Compensation - Sign on Bonus Value,1524,0.4759284731774416,1,6,0,64
+Compensation - Sign on Stock/Equity Options,2279,0.21629986244841815,1,430,0,248
+Compensation - Retirement Benefits (free text),881,0.6970426409903714,1,191,0,1027
+Compensation - Retirement Percent Match (free text),2908,0,NA,NA,0,0
+Compensation - Healthcare Benefits (free text),1907,0.344222833562586,1,978,0,875
+[OPTIONAL] Sign on - Relocation Assistance Total Value,2311,0.20529573590096284,1,226,0,122
+[Optional] Company Review,2374,0.1836313617606602,1,881,0,486
+"[Optional] Work Life Balance - On average, how many hours do you work per week",1345,0.5374828060522696,3,12,0,12
+Survey Feedback,2803,0.03610729023383774,1,352,0,98
+Highest achieved Formal Education,1662,0.42847317744154056,17,32,0,6
+Compensation - Annual Equity,1662,0.42847317744154056,1,84,0,163
+Compensation - Stock Options,2637,0.09319119669876208,1,204,0,178
+Compensation - Options,2908,0,NA,NA,0,0
+Have you one a post-doc?,2908,0,NA,NA,0,0
