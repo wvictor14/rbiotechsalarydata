@@ -1,34 +1,34 @@
 skim_variable,n_missing,complete_rate,min,max,empty,n_unique
 sheet_year,0,1,4,4,0,3
-Timestamp,0,1,16,19,0,2990
-What country do you work in?,2150,0.28117686392510866,2,24,0,33
-Where is the closest major city or hub?,1574,0.47375459712470747,2,42,0,272
-Where are you located?,1421,0.5249080575058509,2,54,0,47
+Timestamp,0,1,16,19,0,2991
+What country do you work in?,2151,0.2810828877005348,2,24,0,33
+Where is the closest major city or hub?,1575,0.473596256684492,2,42,0,272
+Where are you located?,1421,0.5250668449197862,2,54,0,47
 Biotech sub industry?,0,1,2,103,0,170
-Company or Institution Name,428,0.8569040454697425,1,63,0,445
+Company or Institution Name,428,0.856951871657754,1,63,0,445
 Company Details - public/private/start-up/ subsidiary of,0,1,6,29,0,6
-Company Detail - Approximate Company Size,16,0.9946506185222334,4,9,0,5
+Company Detail - Approximate Company Size,16,0.9946524064171123,4,9,0,5
 Role / Title of current position,0,1,1,69,0,1185
-What degrees do you have?,1246,0.5834169174189234,16,126,0,37
-List other relevant and recognized certifications,576,0.8074222668004012,2,67,0,74
-[Optional] Briefly describe your position,1806,0.39618856569709127,1,573,0,1137
+What degrees do you have?,1246,0.5835561497326203,16,126,0,37
+List other relevant and recognized certifications,576,0.8074866310160428,2,67,0,74
+[Optional] Briefly describe your position,1807,0.39605614973262027,1,573,0,1137
 Years of Experience,0,1,1,10,0,30
-Compensation - Annual Base Salary/Pay,0,1,1,9,0,600
-Compensation - Overtime Pay,576,0.8074222668004012,2,206,0,60
+Compensation - Annual Base Salary/Pay,0,1,1,9,0,601
+Compensation - Overtime Pay,576,0.8074866310160428,2,206,0,60
 Compensation - Annual Target Bonus ($),0,1,1,81,0,642
-Compensation - Annual Equity/Stock Option,1246,0.5834169174189234,1,91,0,273
-Compensation - Most recent annual yearly raise (%),576,0.8074222668004012,1,164,0,238
-Compensation - Sign on Bonus Value,1569,0.47542627883650956,1,6,0,64
-Compensation - Sign on Stock/Equity Options,2336,0.21899030424607158,1,430,0,258
-Compensation - Retirement Benefits (free text),882,0.7051153460381143,1,191,0,1063
-Compensation - Retirement Percent Match (free text),2991,0,NA,NA,0,0
-Compensation - Healthcare Benefits (free text),1952,0.34737545971247075,1,978,0,905
-[OPTIONAL] Sign on - Relocation Assistance Total Value,2383,0.2032764961551321,1,226,0,127
-[Optional] Company Review,2444,0.1828819792711468,1,881,0,497
-"[Optional] Work Life Balance - On average, how many hours do you work per week",1349,0.5489802741558008,3,12,0,12
-Survey Feedback,2884,0.03577398863256431,1,352,0,100
-Highest achieved Formal Education,1745,0.41658308258107657,17,32,0,6
-Compensation - Annual Equity,1745,0.41658308258107657,1,84,0,163
-Compensation - Stock Options,2720,0.0906051487796723,1,204,0,178
-Compensation - Options,2991,0,NA,NA,0,0
-Have you one a post-doc?,2991,0,NA,NA,0,0
+Compensation - Annual Equity/Stock Option,1246,0.5835561497326203,1,91,0,273
+Compensation - Most recent annual yearly raise (%),576,0.8074866310160428,1,164,0,238
+Compensation - Sign on Bonus Value,1570,0.47526737967914434,1,6,0,64
+Compensation - Sign on Stock/Equity Options,2337,0.2189171122994652,1,430,0,258
+Compensation - Retirement Benefits (free text),882,0.7052139037433155,1,191,0,1063
+Compensation - Retirement Percent Match (free text),2992,0,NA,NA,0,0
+Compensation - Healthcare Benefits (free text),1953,0.3472593582887701,1,978,0,905
+[OPTIONAL] Sign on - Relocation Assistance Total Value,2384,0.20320855614973266,1,226,0,127
+[Optional] Company Review,2445,0.1828208556149733,1,881,0,497
+"[Optional] Work Life Balance - On average, how many hours do you work per week",1349,0.5491310160427807,3,12,0,12
+Survey Feedback,2885,0.0357620320855615,1,352,0,100
+Highest achieved Formal Education,1746,0.41644385026737973,17,32,0,6
+Compensation - Annual Equity,1746,0.41644385026737973,1,84,0,163
+Compensation - Stock Options,2721,0.09057486631016043,1,204,0,178
+Compensation - Options,2992,0,NA,NA,0,0
+Have you one a post-doc?,2992,0,NA,NA,0,0
