@@ -1,92 +1,97 @@
 skim_variable,n_missing,complete_rate,min,max,empty,n_unique
-sheet_year,0,1,4,4,0,3
-Timestamp,0,1,16,19,0,2994
-Email Address,2995,0,NA,NA,0,0
-Which country do you work in?,2995,0,NA,NA,0,0
-What City do you work in?,2995,0,NA,NA,0,0
-Which US state do you work in?,2995,0,NA,NA,0,0
-Which Canadian Province do you work in?,2995,0,NA,NA,0,0
-Company or Institution Name,428,0.8570951585976627,1,63,0,446
-Which of the following best describes your company?,2995,0,NA,NA,0,0
-Biotech sub industry?,0,1,2,103,0,170
-Company Detail - Approximate Company Size,16,0.9946577629382304,4,9,0,5
-Provide a review and rate your company/institution and experience,2995,0,NA,NA,0,0
-"Work Life Balance - On average, how many hours do you work per week",2995,0,NA,NA,0,0
+sheet_year,0,1,4,4,0,4
+Timestamp,0,1,16,19,0,3054
+Email Address,3055,0,NA,NA,0,0
+Which country do you work in?,2995,0.019639934533551506,6,14,0,4
+What City do you work in?,3053,6.54664484451728e-4,6,6,0,2
+Which US state do you work in?,2998,0.01865793780687397,8,14,0,12
+Which Canadian Province do you work in?,3054,3.273322422258085e-4,7,7,0,1
+Company or Institution Name,428,0.8599018003273322,1,63,0,450
+Which of the following best describes your company?,2995,0.019639934533551506,6,29,0,5
+Biotech sub industry?,0,1,2,103,0,172
+Company Detail - Approximate Company Size,16,0.9947626841243863,4,9,0,5
+Provide a review and rate your company/institution and experience,3033,0.007201309328968897,1,335,0,22
+"Work Life Balance - On average, how many hours do you work per week",2995,0.019639934533551506,3,7,0,5
 "What is your official job title?
 
 This should match the title that was present on your offer letter. 
 
 Some examples: Research Associate, Scientist, Scientist I/II/III, Senior Scientist, Principal Scientist, Manager, Lab Technician, VP, Director etc.
 
-If your job title includes additional detail, please include e.g. Director of Bioinformatics",2995,0,NA,NA,0,0
-"Which department best describes your role? If you can't find one that fits your specific role, select 'Other' and describe",2995,0,NA,NA,0,0
-Briefly describe your position and responsibilities,2995,0,NA,NA,0,0
-"Do you work In-Person, Remote, or Hybrid?",2995,0,NA,NA,0,0
-How many days per week can you work from home?,2995,0,NA,NA,0,0
-What degrees do you have?,1246,0.5839732888146911,16,126,0,37
-"How many total years of experience in post-docs do you have? (If none, enter 0)",2995,0,NA,NA,0,0
-List other relevant and recognized certifications*,2995,0,NA,NA,0,0
-"Years of Experience in Biotech
+If your job title includes additional detail, please include e.g. Director of Bioinformatics",2995,0.019639934533551506,2,44,0,46
+"Which department best describes your role? If you can't find one that fits your specific role, select 'Other' and describe",2995,0.019639934533551506,5,29,0,18
+Briefly describe your position and responsibilities,3022,0.010801963993453345,8,159,0,33
+"Do you work In-Person, Remote, or Hybrid?",2995,0.019639934533551506,6,9,0,3
+How many days on average per week do you work from home?,2995,0.019639934533551506,1,3,0,9
+What degrees do you have?,1306,0.5725040916530278,16,126,0,37
+"How many total years of experience in post-docs do you have? (If none, enter 0)",2995,0.019639934533551506,1,2,0,7
+List other relevant and recognized certifications,632,0.793126022913257,2,67,0,76
+"Please enter your total years of experience in the field
 
-DO NOT INCLUDE years in BSc, Masters, PhD, or post-bacc/post-doc",2995,0,NA,NA,0,0
-What currency will you be answering these questions in?,2995,0,NA,NA,0,0
-Are you paid hourly or have an annual salary?,2995,0,NA,NA,0,0
-"If you are an hourly employee, how many hours per week do you work?",2995,0,NA,NA,0,0
-"Annual Base Salary/Pay*
-If you are paid hourly, multiply by 2080 to convert to yearly (assuming you work 40hr/week)",2995,0,NA,NA,0,0
-"Overtime Pay*
-How is overtime handled on a per hour basis? (1.5x base, 2x base, etc)",2995,0,NA,NA,0,0
+DO NOT INCLUDE years in BSc, Masters, PhD, or post-bacc/post-doc",2995,0.019639934533551506,1,2,0,19
+What currency will you be answering these questions in?,3055,0,NA,NA,0,0
+Are you a salaried or hourly employee,2995,0.019639934533551506,6,8,0,2
+"If you are an hourly employee, how many hours per week do you work?",2995,0.019639934533551506,2,14,0,3
+"Annual Base Salary 
+
+What is your annual BASE salary? Do not include bonus or stocks
+
+If you are paid hourly, multiply by 2080 to convert to yearly (assuming you work 40hr/week)",2995,0.019639934533551506,3,6,0,47
+"Overtime Pay
+
+How is overtime handled on a per hour basis? (1.5x base, 2x base, etc)",2995,0.019639934533551506,3,29,0,3
 "Annual Target Bonus in PERCENTAGE (%)
 
-This should be stipulated prior to your employment. DO NOT include one-time bonuses (spot bonuses, signing bonuses, referral bonuses).",2995,0,NA,NA,0,0
-If you are a compensated with commission how much is your commission? (Please indicate if answering in percentage or absolute monetary value),2995,0,NA,NA,0,0
+This should be stipulated prior to your employment. DO NOT include one-time bonuses (spot bonuses, signing bonuses, referral bonuses).",2995,0.019639934533551506,1,4,0,21
+"Commission
+
+If you are compensated with commission how much is your commission? (Please indicate if answering in percentage or absolute monetary value)",2995,0.019639934533551506,1,43,0,4
 "Annual Equity/Stock Option
 
 Please enter the grant/market value of your long-term incentive. Use the annualized amount if distributed over several years. Enter 0 if none or not applicable. 
 
-DO NOT include equity when signing on or one-time equity bonuses",2995,0,NA,NA,0,0
+DO NOT include equity when signing on or one-time equity bonuses",2995,0.019639934533551506,1,6,0,21
 "Most recent annual yearly raise (%)
 
-Companies typically do yearly raises across the board for all employees. This is not to be confused with promotions or raises that were requested.",2995,0,NA,NA,0,0
+Companies typically do yearly raises across the board for all employees. This is not to be confused with promotions or raises that were requested.",2995,0.019639934533551506,1,56,0,16
 "[Sign on] Bonus Value
-This is a one-time bonus you may have received when signing-on. This is not a bonus that reoccurs",2995,0,NA,NA,0,0
+This is a one-time bonus you may have received when signing-on. This is not a bonus that reoccurs",3026,0.00949263502454989,1,6,0,9
 "[Sign on] Stock/Equity Options
-Briefly describe sign on stock/equity options that is available",2995,0,NA,NA,0,0
+Briefly describe sign on stock/equity options that is available",3029,0.008510638297872353,1,117,0,15
 "[Sign on] Relocation Assistance Total Value
 
-This is the total value of the relocation assistance including but not limited to tax-true ups company may have paid, movers expenses, shipping of vehicles, temporary living, etc.",2995,0,NA,NA,0,0
+This is the total value of the relocation assistance including but not limited to tax-true ups company may have paid, movers expenses, shipping of vehicles, temporary living, etc.",3029,0.008510638297872353,1,5,0,6
 "Retirement Benefits (free text)
-Briefly describe retirement benefits. For example 401k match %, pension, etc",2995,0,NA,NA,0,0
+Briefly describe retirement benefits. For example 401k match %, pension, etc",3008,0.01538461538461533,1,149,0,42
 "Healthcare Benefits (free text)
-Describe healthcare benefits - costs, deductibles, outfamily plan, insurance provider, total out of pocket, HSA contributions, etc",2995,0,NA,NA,0,0
-"Select the highest level of education that you have that's relevant to your occupation. If you have multiple (e.g. PhD + MD) please select ""Other"" and describe",2995,0,NA,NA,0,0
-How many years have you been working at this current position?,2995,0,NA,NA,0,0
-What currency will you be answering these quesitons in?,2995,0,NA,NA,0,0
-Survey feedback,2995,0,NA,NA,0,0
-What country do you work in?,2154,0.28080133555926545,2,24,0,33
-Where is the closest major city or hub?,1578,0.47312186978297166,2,42,0,272
-Where are you located?,1421,0.525542570951586,2,54,0,47
-Company Details - public/private/start-up/ subsidiary of,0,1,6,29,0,6
-Role / Title of current position,0,1,1,69,0,1186
-List other relevant and recognized certifications,576,0.8076794657762938,2,67,0,74
-[Optional] Briefly describe your position,1809,0.3959933222036728,1,573,0,1138
-Years of Experience,0,1,1,10,0,30
-Compensation - Annual Base Salary/Pay,0,1,1,9,0,603
-Compensation - Overtime Pay,576,0.8076794657762938,2,206,0,60
-Compensation - Annual Target Bonus ($),0,1,1,81,0,643
-Compensation - Annual Equity/Stock Option,1246,0.5839732888146911,1,91,0,273
-Compensation - Most recent annual yearly raise (%),576,0.8076794657762938,1,164,0,238
-Compensation - Sign on Bonus Value,1572,0.4751252086811353,1,6,0,64
-Compensation - Sign on Stock/Equity Options,2339,0.2190317195325543,1,430,0,258
-Compensation - Retirement Benefits (free text),882,0.7055091819699499,1,191,0,1063
-Compensation - Retirement Percent Match (free text),2995,0,NA,NA,0,0
-Compensation - Healthcare Benefits (free text),1956,0.3469115191986645,1,978,0,905
-[OPTIONAL] Sign on - Relocation Assistance Total Value,2387,0.20300500834724544,1,226,0,127
-[Optional] Company Review,2446,0.18330550918196997,1,881,0,499
-"[Optional] Work Life Balance - On average, how many hours do you work per week",1349,0.5495826377295492,3,12,0,12
-Survey Feedback,2888,0.03572621035058432,1,352,0,100
-Highest achieved Formal Education,1749,0.4160267111853089,17,32,0,6
-Compensation - Annual Equity,1749,0.4160267111853089,1,84,0,163
-Compensation - Stock Options,2724,0.09048414023372287,1,204,0,178
-Compensation - Options,2995,0,NA,NA,0,0
-Have you one a post-doc?,2995,0,NA,NA,0,0
+Describe healthcare benefits - costs, deductibles, outfamily plan, insurance provider, total out of pocket, HSA contributions, etc",3024,0.010147299509001617,3,134,0,30
+"Select the highest level of education that you have that's relevant to your occupation. If you have multiple (e.g. PhD + MD) please select ""Other"" and describe",2995,0.019639934533551506,3,9,0,4
+How many years have you been working at this current position?,2995,0.019639934533551506,1,11,0,16
+What currency will you be answering these quesitons in?,2995,0.019639934533551506,10,21,0,4
+Survey feedback,3048,0.0022913256955809924,11,261,0,7
+What country do you work in?,2214,0.2752864157119477,2,24,0,33
+Where is the closest major city or hub?,1638,0.46382978723404256,2,42,0,272
+Where are you located?,1481,0.5152209492635025,2,54,0,47
+Company Details - public/private/start-up/ subsidiary of,60,0.9803600654664485,6,29,0,6
+Role / Title of current position,60,0.9803600654664485,1,69,0,1186
+[Optional] Briefly describe your position,1869,0.38821603927986903,1,573,0,1138
+Years of Experience,60,0.9803600654664485,1,10,0,30
+Compensation - Annual Base Salary/Pay,60,0.9803600654664485,1,9,0,603
+Compensation - Overtime Pay,636,0.7918166939443535,2,206,0,60
+Compensation - Annual Target Bonus ($),60,0.9803600654664485,1,81,0,643
+Compensation - Annual Equity/Stock Option,1306,0.5725040916530278,1,91,0,273
+Compensation - Most recent annual yearly raise (%),636,0.7918166939443535,1,164,0,238
+Compensation - Sign on Bonus Value,1632,0.46579378068739774,1,6,0,64
+Compensation - Sign on Stock/Equity Options,2399,0.21472995090016367,1,430,0,258
+Compensation - Retirement Benefits (free text),942,0.6916530278232406,1,191,0,1063
+Compensation - Retirement Percent Match (free text),3055,0,NA,NA,0,0
+Compensation - Healthcare Benefits (free text),2016,0.34009819967266774,1,978,0,905
+[OPTIONAL] Sign on - Relocation Assistance Total Value,2447,0.19901800327332242,1,226,0,127
+[Optional] Company Review,2506,0.17970540098199672,1,881,0,499
+"[Optional] Work Life Balance - On average, how many hours do you work per week",1409,0.5387888707037642,3,12,0,12
+Survey Feedback,2948,0.03502454991816695,1,352,0,100
+Highest achieved Formal Education,1809,0.40785597381342065,17,32,0,6
+Compensation - Annual Equity,1809,0.40785597381342065,1,84,0,163
+Compensation - Stock Options,2784,0.08870703764320786,1,204,0,178
+Compensation - Options,3055,0,NA,NA,0,0
+Have you one a post-doc?,3055,0,NA,NA,0,0
