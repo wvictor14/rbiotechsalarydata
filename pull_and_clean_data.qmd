@@ -481,6 +481,31 @@ sal_clean_filt |>
 
 ## Title
 
+What variables correspond to job title?
+
+```{r}
+completeness |> filter(str_detect(tolower(variable), 'title')) |>  reactable_na()
+```
+
+2025: `What is your official job title? This should match the title that was present on your offer letter. Some examples: Research Associate, Scientist, Scientist I/II/III, Senior Scientist, Principal Scientist, Manager, Lab Technician, VP, Director etc. If your job title includes additional detail, please include e.g. Director of Bioinformatics`
+
+2024: `Role / Title of current position`
+
+rename 2025 variable to `title_2025`
+
+And then merge with 2024 to: `role_title_of_current_position`
+
+```{r}
+sal_clean_filt <- sal_clean_filt |> 
+  rename(title_2025 = what_is_your_official_job_title_this_should_match_the_title_that_was_present_on_your_offer_letter_some_examples_research_associate_scientist_scientist_i_ii_iii_senior_scientist_principal_scientist_manager_lab_technician_vp_director_etc_if_your_job_title_includes_additional_detail_please_include_e_g_director_of_bioinformatics) |> 
+  mutate(role_title_of_current_position = case_when(
+    is.na(role_title_of_current_position) ~ title_2025,
+    TRUE ~ role_title_of_current_position
+  ))
+```
+
+pre-2025 cleaning: 
+
 Title is very important, but also very messy. Titles can have different meanings (compensation, experience, responsibilities) between companies, and location.
 
 ```{r}
@@ -864,10 +889,36 @@ Look at the remaining roles that I have not tried to process.
 ```{r}
 sal_clean_filt |>  
   filter(is.na(title_category)) |> 
-  pull(role_title_of_current_position) |>  unique()
+  distinct(role_title_of_current_position) |>  
+  reactable()
 ```
 
 ## Experience
+
+What variables correspond to years of experience?
+
+```{r}
+completeness |> filter(str_detect(tolower(variable), 'experience')) |>  reactable_na()
+```
+
+2025: `Please enter your total years of experience in the field DO NOT INCLUDE years in BSc, Masters, PhD, or post-bacc/post-doc`
+
+2024: `Years of Experience`
+
+rename 2025 variable to `yoe_2025`
+
+And then merge with 2024 to: `years_of_experience`
+
+```{r}
+sal_clean_filt <- sal_clean_filt |> 
+  rename(yoe_2025 = please_enter_your_total_years_of_experience_in_the_field_do_not_include_years_in_b_sc_masters_ph_d_or_post_bacc_post_doc) |> 
+  mutate(years_of_experience = case_when(
+    is.na(years_of_experience) ~ yoe_2025,
+    TRUE ~ years_of_experience
+  ))
+```
+
+**pre-2025 cleaning:**
 
 ```{r}
 sal_clean_filt |> 
@@ -885,6 +936,42 @@ message(glue('# NAs\nbefore: {n_before}\nafter: {n_after}'))
 ```
 
 #### degree
+
+What variables correspond to education?
+
+```{r}
+completeness |> filter(str_detect(tolower(variable), '(degree|edu)')) |>  reactable_na()
+```
+
+2025: `Select the highest level of education that you have that's relevant to your occupation. If you have multiple (e.g. PhD + MD) please select "Other" and describe`
+
+2024: `Select the highest level of education that you have that's relevant to your occupation. If you have multiple (e.g. PhD + MD) please select "Other" and describe`
+
+2023: `Highest achieved Formal Education`
+
+rename 2025 variable to `highest_degree_2025`
+
+And then merge with 2024 to: `what_degrees_do_you_have`
+
+```{r}
+sal_clean_filt |>  colnames() |>  str_subset('education')
+sal_clean_filt <- sal_clean_filt |> 
+  rename(highest_degree_2025 = select_the_highest_level_of_education_that_you_have_thats_relevant_to_your_occupation_if_you_have_multiple_e_g_ph_d_md_please_select_other_and_describe) |> 
+  mutate(what_degrees_do_you_have = case_when(
+    #2025
+    is.na(what_degrees_do_you_have) &
+      is.na(highest_achieved_formal_education) ~ highest_degree_2025,
+    
+    # 2023 2022
+    is.na(what_degrees_do_you_have) & 
+      is.na(highest_degree_2025) ~ highest_achieved_formal_education,
+    
+    #2024
+    TRUE ~ what_degrees_do_you_have
+  ))
+```
+
+**pre-2025 cleaning:**
 
 ```{r}
 sal_clean_filt |> 
@@ -925,6 +1012,22 @@ sal_clean_filt |>
 ```
 
 ## Location
+
+What variables correspond to location?
+
+```{r}
+completeness |> filter(str_detect(tolower(variable), '(located|city|country|state|province)')) |>  reactable_na()
+sal_clean_filt |>  colnames() |>  str_subset('(country|city|state|provin)')
+```
+
+2025: `Which country do you work in?`, `What City do you work in?`, `Which US state do you work in?`, `Which Canadian Province do you work in?`
+
+2024: `Where are you located?`
+
+<2023: `What country do you work in?`, `Where is the closest major city or hub?`
+
+
+**pre-2025 cleaning:**
 
 ```{r}
 sal_clean_filt |> 
@@ -1037,6 +1140,9 @@ sal_clean_filt <- sal_clean_filt |>
     # matching
     location_country = case_when(
       
+      ### 2025 data
+      !is.na(which_country_do_you_work_in) ~ which_country_do_you_work_in,
+      
       ### usa 
       location_raw_data %in% c(
         tolower(USA), 
@@ -1087,13 +1193,19 @@ for selecting within country:
 sal_clean_filt <- sal_clean_filt |> 
   mutate(
     location_granular = 
-      coalesce(where_is_the_closest_major_city_or_hub, where_are_you_located)
+      coalesce(
+        which_us_state_do_you_work_in,
+        which_canadian_province_do_you_work_in,
+        where_is_the_closest_major_city_or_hub, where_are_you_located)
   )  
 sal_clean_filt |> 
   count(
     location_granular, 
+    
+        which_us_state_do_you_work_in,
+        which_canadian_province_do_you_work_in,
     where_is_the_closest_major_city_or_hub, 
-    where_are_you_located) |>  gt()
+    where_are_you_located) |>  gt() 
 ```
 
 # Completeness
@@ -1146,36 +1258,4 @@ sal_clean_filt |>
     -timestamp, -bonus_cleaned, -year, -month, -day
   ) |> 
   write_csv(here::here(outdir , 'salary_results_cleaned.csv'))
-```
-
-kept for historical, will remove:
-
-```{r eval = FALSE}
-salaries <- readr::read_csv(here::here('data', 'salary_results_cleaned.csv'))
-salaries <- salaries |>  
-  mutate(
-    title_general = title_general |>
-      forcats::fct() |>
-      forcats::fct_relevel(
-        
-        'Research Associate', 'Senior Research Associate',
-        
-        'Associate Scientist', 'Scientist', 
-        'Senior Scientist', 'Principal Scientist',
-        
-        'Associate Director', 'Director', 'Senior Director', 
-        'Executive Director',
-        
-        'VP', 'SVP'
-      ),
-    
-    title_category = title_category |> 
-      forcats::fct() |> 
-      forcats::fct_relevel(
-        'Research Associate', 'Scientist', 'Director', 'VP'
-      ),
-    
-    location_granular = forcats::fct(location_granular) |> 
-      forcats::fct_relevel(USA)
-  )
 ```
