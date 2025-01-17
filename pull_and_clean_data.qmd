@@ -42,6 +42,7 @@ library(janitor)
 library(stringr)
 library(tictoc)
 library(usethis)
+library(reactable)
 ```
 
 # preprocess excel data
@@ -56,17 +57,36 @@ library(googlesheets4)
 gs4_deauth()
 google_sheets_url <- 'https://docs.google.com/spreadsheets/d/1G0FmJhkOME_sv66hWmhnZS5qR2KMTY7nzkxksv46bfk/edit#gid=491268892'
 sheet_names <- googlesheets4::sheet_names(google_sheets_url)
+```
 
-#read_sheet(google_sheets_url, sheet = '2024', col_types = 'c')
+# yearly survey version differences
 
-tic('done reading google sheets')
-sheet_names |>  
+```{r}
+sal <- sheet_names |>  
   # read it as character values to avoid list-column headaches
-  walk(
-    \(x) read_sheet(google_sheets_url, sheet = x, col_types = 'c') |> 
-      write_csv(here(outdir, glue::glue('{x}_survey_results.csv')))
-  )
-toc()
+  map(
+    \(x) read_sheet(google_sheets_url, sheet = x, col_types = 'c')
+  ) 
+sal <-  sal |> 
+  set_names(sheet_names) |> 
+  bind_rows(.id = 'sheet_name')
+sal  |>  glimpse()
+```
+
+```{r}
+sal |> count(sheet_name)
+missing_variables_by_year <- sal |> 
+  summarize(
+    .by = sheet_name,
+    across(everything(), ~sum(is.na(.)))
+  ) |>  
+  pivot_longer(
+    cols = -c(sheet_name),
+    names_to = 'variable',
+    values_to = 'n_missing'
+  ) |>  
+  arrange(desc(sheet_name), desc(n_missing)) 
+missing_variables_by_year |>   reactable(groupBy = 'sheet_name')
 ```
 
 # Initial exploratory
@@ -76,47 +96,37 @@ toc()
 Look at response rate per question (number of NAs):
 
 ```{r read_data}
-# read in each sheet and combine
-sal <- sheet_names %>% 
-  setNames(., nm = .) |>   
-  map(
-    \(x) read_csv(
-      here(outdir, glue::glue('{x}_survey_results.csv')), 
-      col_types = cols(.default = "c"))
-  )  |> 
-  list_rbind(names_to = 'sheet_year')
-
 # assess NAs
 percent_na <- function(x, invert = FALSE) {
   p <- sum(is.na(x)) / length(x)
   if (invert) { p <- 1 - p}
-  scales::percent(p)
+  p
 }
 
-sal |> 
+completeness <- sal |> 
   summarize(
+    .by = sheet_name,
     across(everything(), ~percent_na(.x, invert = TRUE))
-  ) |> 
-  pivot_longer(everything(), names_to = 'column', values_to = '% responded') |> 
-  gt()
+  )   |> 
+  mutate(across(everything(), ~ifelse(. == 0, NA, .))) |> 
+  pivot_longer(-sheet_name, names_to = 'variable', values_to = '% responded') |> 
+  pivot_wider(names_from = sheet_name, values_from = '% responded')  
+
+reactable_na <- function(df) {
+  df |> 
+    gt() |> 
+    fmt_percent(columns = -variable, decimals = 0) |> 
+    data_color(
+      columns = -variable, 
+      palette = c('white', 'blue'),
+      na_color = 'white',
+      domain = c(0, 1)) |> 
+    sub_missing(missing_text = '0') |> 
+    tab_options(table.width = px(500))
+}
+reactable_na(completeness) 
 ```
 
-skimr has a great function that does this, `skim`:
-
-```{r}
-sal |>  skim()
-```
-
-### save raw data summary
-
-```{r}
-sal |> 
-  skimr::skim() |> 
-  as_tibble() |> 
-  rename_with(~stringr::str_remove_all(.x, 'character\\.')) |> 
-  select(-skim_type, -whitespace)  |> 
-  readr::write_csv(here::here(outdir, 'salary_raw_data.csv'))
-```
 
 ## Remove those with 0 answers:
 
@@ -180,6 +190,49 @@ There are a handful of responses with annual salary reportedly less than \$5000.
 
 ### base
 
+Which column corresponds to base salary?
+
+```{r}
+completeness |> filter(str_detect(tolower(variable), 'salary')) |>  reactable_na()
+```
+
+2025 we changed the question, added data validation so that it has to be digits
+
+before 2025, it was a short-form text, so it needed a lot of data cleaning.
+
+
+2025 looks like this
+
+I rename to `compensation_annual_base_salary_pay_2025 ` first
+
+```{r}
+sal_clean <- sal_clean |> rename(
+  compensation_annual_base_salary_pay_2025  = annual_base_salary_what_is_your_annual_base_salary_do_not_include_bonus_or_stocks_if_you_are_paid_hourly_multiply_by_2080_to_convert_to_yearly_assuming_you_work_40hr_week
+) 
+sal_clean <- sal_clean |> mutate(compensation_annual_base_salary_pay_2025 = as.numeric(compensation_annual_base_salary_pay_2025))
+
+sal_clean |> 
+  select(compensation_annual_base_salary_pay_2025 ) |> 
+  ggplot(aes(x = compensation_annual_base_salary_pay_2025 )) + 
+  geom_histogram() + 
+  scale_x_continuous(labels = scales::dollar)
+```
+
+Since it looks good I will coaelesce 2025 with previous years:
+
+```{r}
+sal_clean <- sal_clean |> 
+  mutate(compensation_annual_base_salary_pay = ifelse(
+    is.na(compensation_annual_base_salary_pay), 
+    compensation_annual_base_salary_pay_2025,
+    compensation_annual_base_salary_pay
+  )) |> 
+  select(-compensation_annual_base_salary_pay_2025)
+```
+
+Now what follows is cleaning the data:
+- remove too low salaries (<5k)
+
 ```{r}
 # make numeric
 sal_clean <- sal_clean |>  
@@ -208,7 +261,7 @@ n_removed <- nrow(sal_clean) - nrow(sal_clean_filt)
 sal_clean_filt <- sal_clean_filt |> 
   mutate(compensation_annual_base_salary_pay = ifelse(
     compensation_annual_base_salary_pay == 1350000 &
-      sheet_year == '2023', 
+      sheet_name == '2023', 
     1350000/10, 
     compensation_annual_base_salary_pay
   ))
@@ -222,7 +275,6 @@ sal_clean_filt <- sal_clean_filt |>
       compensation_annual_base_salary_pay*1000, 
       compensation_annual_base_salary_pay     
     ))
-
 
 n_changed <- sal_clean_filt |> 
   filter(salary_base != compensation_annual_base_salary_pay) |>
@@ -239,6 +291,61 @@ sal_clean_filt |>
 ```
 
 ### target bonus
+
+Which column corresponds to bonus?
+
+```{r}
+completeness |> filter(str_detect(tolower(variable), 'bonus')) |>  reactable_na()
+```
+
+```{r}
+sal_clean_filt |>  colnames() |>  str_subset('bonus')
+```
+
+2025: `annual_target_bonus_in_percentage_percent_this_should_be_stipulated_prior_to_your_employment_do_not_include_one_time_bonuses_spot_bonuses_signing_bonuses_referral_bonuses`  
+2024: `compensation_annual_target_bonus`
+
+```{r}
+sal_clean_filt  |> 
+  count(annual_target_bonus_in_percentage_percent_this_should_be_stipulated_prior_to_your_employment_do_not_include_one_time_bonuses_spot_bonuses_signing_bonuses_referral_bonuses)  |> 
+  set_names(nm = c('bonus', 'n')) |>  
+  gt()
+```
+
+2025 looks good, combine it 
+
+leave it in the data, but rename to shorter: `bonus_pct_2025`
+
+```{r}
+sal_clean_filt <- sal_clean_filt |> 
+  rename(bonus_pct_2025 = annual_target_bonus_in_percentage_percent_this_should_be_stipulated_prior_to_your_employment_do_not_include_one_time_bonuses_spot_bonuses_signing_bonuses_referral_bonuses) |> 
+  
+  mutate(compensation_annual_target_bonus = case_when(
+    !is.na(bonus_pct_2025) ~ as.numeric(bonus_pct_2025),
+    TRUE ~ compensation_annual_target_bonus
+  )) 
+```
+
+Look at the completeness of bonus now:
+
+```{r}
+sal_clean_filt |> 
+  count(.by = sheet_name, missing_bonus = is.na(compensation_annual_target_bonus)) |>   
+  mutate(.by = .by, p = n / sum(n)) |> 
+  pivot_wider(
+    names_from = .by, values_from = c(n, p), names_vary = 'slowest'
+  ) |> 
+  gt() |> 
+  fmt_percent(contains('p_')) |>
+  data_color(
+    columns = contains('p_'), 
+    palette = c('grey', 'forestgreen'),
+    na_color = 'white',
+    domain = c(0, 1)) |> 
+  tab_spanner_delim(columns = -missing_bonus, delim = '_', reverse = TRUE)
+```
+
+**Before 2025:**
 
 is a mix of % and \$ amount
 
@@ -307,7 +414,8 @@ sal_clean_filt |>
   arrange(salary_base) |> 
   gt() |> 
   fmt_percent(bonus_pct) |> 
-  fmt_currency(c(salary_base, bonus))
+  fmt_currency(c(salary_base, bonus)) |> 
+  sub_missing()
 
 
 n_changed_bonus <- sal_clean_filt |> 
@@ -319,10 +427,16 @@ I converted bonus into % and raw \$. This involved modifying `r n_changed_bonus`
 
 #### filter
 
+These are the responses that put a bonus amount that is nonsensical (> 100%)
+
+I remove these responses completely
+
 ```{r}
 # bonus > 100% of base
 sal_clean_filt |> 
-  filter(bonus_pct >= 1) 
+  filter(bonus_pct >= 1)  |> 
+  select(bonus_pct, bonus_pct_2025, bonus_cleaned, compensation_annual_base_salary_pay)
+
 sal_clean_filt <- sal_clean_filt |> 
   filter(bonus_pct < 1) 
 ```
