@@ -9,6 +9,7 @@ format:
     embed-resources: true
     toc: true
     toc-depth: 4
+    toc-expand: 2
 editor: visual
 editor_options: 
   chunk_output_type: console
