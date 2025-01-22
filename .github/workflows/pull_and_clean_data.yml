@@ -1,0 +1,57 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+  schedule:
+    - cron: '41 15 * * *'  # trigger at 3:41 pm UTC (8:41 AM PST)
+
+name: Quarto Publish
+
+jobs:
+  update-data-render-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        
+      - name: Install system dependencies
+        run: |
+          sudo apt update
+          sudo apt install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.2'
+        
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          path: pull_and_clean_data.qmd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Render and commit data
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          path: pull_and_clean_data.qmd 
+      - name: Commit cleaned data
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add salary_raw_data.csv
+          git add salary_results_cleaned.csv
+          
+          timestamp=$(date +'%Y-%m-%d_%H%M%S')
+          git commit -m "$timestamp gha salary data"
+          git push
