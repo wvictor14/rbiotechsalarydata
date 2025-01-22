@@ -1142,7 +1142,8 @@ sal_clean_filt <- sal_clean_filt |>
     location_country = case_when(
       
       ### 2025 data
-      !is.na(which_country_do_you_work_in) ~ which_country_do_you_work_in,
+      !is.na(which_country_do_you_work_in) ~ which_country_do_you_work_in |> 
+        str_replace('United States', 'United States of America'),
       
       ### usa 
       location_raw_data %in% c(
