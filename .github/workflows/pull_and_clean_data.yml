@@ -3,7 +3,7 @@ on:
   push:
     branches: main
   schedule:
-    - cron: '41 15 * * *'  # trigger at 3:41 pm UTC (8:41 AM PST)
+    - cron: '0 17 * * 1'  # 5pm UTC (9AM AM PST)
 
 name: Quarto Publish
 
